@@ -7,6 +7,7 @@ defmodule UniversityWeb.Router do
 
   scope "/api", UniversityWeb do
     pipe_through :api
+    resources "/teachers", TeachersController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

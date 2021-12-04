@@ -4,6 +4,7 @@ defmodule University.Teacher do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :graduation]
+  @derive {Jason.Encoder, only: [:id, :name, :graduation]}
 
   schema "teachers" do
     field :name, :string
