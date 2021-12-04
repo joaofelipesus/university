@@ -7,6 +7,10 @@
 # General application configuration
 import Config
 
+config :university, University.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 config :university,
   ecto_repos: [University.Repo]
 
