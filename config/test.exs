@@ -9,7 +9,7 @@ config :university, University.Repo,
   username: "postgres",
   password: "postgres",
   database: "university_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  hostname: "db",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
