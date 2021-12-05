@@ -2,6 +2,7 @@ defmodule University.Services.Teachers.FindTest do
   use University.DataCase, async: true
 
   alias University.Services.Teachers.Find
+  alias University.Teacher
 
   import University.Factory
 
@@ -9,9 +10,8 @@ defmodule University.Services.Teachers.FindTest do
     test "when received id matches with a teacher" do
       teacher = insert(:teacher)
 
-      {status, teacher: teacher_found} = Find.by_id(teacher.id)
+      assert %Teacher{} = teacher_found = Find.by_id(teacher.id)
 
-      assert status == :ok
       assert teacher_found == teacher
     end
 

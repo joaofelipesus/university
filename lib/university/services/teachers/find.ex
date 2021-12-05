@@ -6,7 +6,7 @@ defmodule University.Services.Teachers.Find do
 
     case teacher do
       nil -> nil
-      _ -> {:ok, teacher: teacher}
+      _ -> teacher
     end
   end
 end
