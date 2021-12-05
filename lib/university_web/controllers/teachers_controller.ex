@@ -29,7 +29,7 @@ defmodule UniversityWeb.TeachersController do
   end
 
   def update(conn, %{"id" => id} = params) do
-    with {:ok, %Teacher{} = teacher} <- Update.call(params) do
+    with {:ok, %Teacher{} = teacher} <- Update.call(id, params) do
       conn
       |> put_status(:ok)
       |> render("show.json", %{teacher: teacher})

@@ -91,4 +91,35 @@ defmodule UniversityWeb.TeachersControllerTest do
                response
     end
   end
+
+  describe "update/2" do
+    test "when params are valid", %{conn: conn} do
+      teacher = insert(:teacher)
+      params = %{name: "Some new name", graduation: "MASTER", id: teacher.id}
+
+      response = conn
+        |> put(Routes.teachers_path(conn, :update, teacher.id, params))
+        |> json_response(:ok)
+
+      assert %{
+        "teacher" => %{
+          "graduation" => "MASTER",
+          "id" => _id,
+          "name" => "Some new name"
+        }
+      } = response
+    end
+
+    test "when params has problems", %{conn: conn} do
+      teacher = insert(:teacher)
+      params = %{name: "", graduation: "ULTRA_MASTER", id: teacher.id}
+
+      response = conn
+        |> put(Routes.teachers_path(conn, :update, teacher.id, params))
+        |> json_response(:bad_request)
+
+      assert %{"errors" => %{"graduation" => ["is invalid"], "name" => ["can't be blank"]}} ==
+               response
+    end
+  end
 end
