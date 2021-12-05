@@ -14,8 +14,8 @@ defmodule UniversityWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("400.json", %{message: message}) do
-    %{errors: message}
+  def render("400.json", %{messages: messages}) do
+    %{errors: messages}
   end
 
   def render("404.json", %{message: message}) do

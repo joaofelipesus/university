@@ -2,7 +2,7 @@ defmodule UniversityWeb.TeachersController do
   use UniversityWeb, :controller
 
   alias University.{Repo, Teacher}
-  alias University.Services.Teachers.Find
+  alias University.Services.Teachers.{Find, Create}
 
   action_fallback UniversityWeb.FallbackController
 
@@ -16,6 +16,14 @@ defmodule UniversityWeb.TeachersController do
     with {:ok, teacher: %Teacher{} = teacher} <- Find.by_id(id) do
       conn
       |> put_status(:ok)
+      |> render("show.json", %{teacher: teacher})
+    end
+  end
+
+  def create(conn, params) do
+    with {:ok, %Teacher{} = teacher} <- Create.call(params) do
+      conn
+      |> put_status(:created)
       |> render("show.json", %{teacher: teacher})
     end
   end
