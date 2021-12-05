@@ -12,4 +12,11 @@ defmodule UniversityWeb.ErrorViewTest do
     assert render(UniversityWeb.ErrorView, "500.json", []) ==
              %{errors: %{detail: "Internal Server Error"}}
   end
+
+  test "renders 400.json" do
+    error_messages = ["Some error"]
+
+    assert render(UniversityWeb.ErrorView, "400.json", %{messages: error_messages}) ==
+      %{errors: ["Some error"]}
+  end
 end
