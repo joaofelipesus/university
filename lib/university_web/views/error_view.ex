@@ -13,4 +13,12 @@ defmodule UniversityWeb.ErrorView do
   def template_not_found(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
+
+  def render("400.json", %{message: message}) do
+    %{errors: message}
+  end
+
+  def render("404.json", %{message: message}) do
+    %{errors: message}
+  end
 end

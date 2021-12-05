@@ -4,6 +4,8 @@ defmodule UniversityWeb.TeachersController do
   alias University.{Repo, Teacher}
   alias University.Services.Teachers.Find
 
+  action_fallback UniversityWeb.FallbackController
+
   def index(conn, _params) do
     conn
     |> put_status(:ok)

@@ -4,7 +4,7 @@ defmodule University.Services.Teachers.Find do
   def by_id(id) do
     teacher = Repo.get(Teacher, id)
     case teacher do
-      nil -> {:error, "Teacher doesn't found"}
+      nil -> nil
       _ -> {:ok, teacher: teacher}
     end
   end

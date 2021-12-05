@@ -17,10 +17,9 @@ defmodule University.Services.Teachers.FindTest do
 
     test "when received id doesn't match with any teacher" do
       uuid = "8e989dd9-e4ed-42a8-93d9-ab8d49c17239"
-      {status, message} = Find.by_id(uuid)
+      response = Find.by_id(uuid)
 
-      assert status == :error
-      assert message == "Teacher doesn't found"
+      assert response == nil
     end
   end
 end
