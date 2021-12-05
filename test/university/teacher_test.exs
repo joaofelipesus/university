@@ -3,7 +3,6 @@ defmodule University.TeacherTest do
 
   alias University.Teacher
 
-
   describe "changeset/2" do
     test "when params are ok" do
       params = %{name: "Asuka", graduation: "MASTER"}
@@ -26,9 +25,15 @@ defmodule University.TeacherTest do
       response = Teacher.changeset(params)
       %Ecto.Changeset{errors: errors, valid?: valid} = response
       assert valid == false
+
       assert [
-        graduation: {"is invalid", [validation: :inclusion, enum: ["POST_GRADUATED", "MASTER", "DOCTOR", "POST_DOCTOR"]]}
-      ] == errors
+               graduation:
+                 {"is invalid",
+                  [
+                    validation: :inclusion,
+                    enum: ["POST_GRADUATED", "MASTER", "DOCTOR", "POST_DOCTOR"]
+                  ]}
+             ] == errors
     end
   end
 end

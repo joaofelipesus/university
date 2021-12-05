@@ -3,7 +3,6 @@ defmodule UniversityWeb.TeachersViewTest do
   import Phoenix.View
   import University.Factory
 
-
   alias University.{Teacher, Repo}
 
   describe "render('index.json')/2" do
@@ -22,7 +21,10 @@ defmodule UniversityWeb.TeachersViewTest do
   describe "render('show.json', %{teacher: teacher})" do
     test "return a teacher serialized" do
       teacher = insert(:teacher)
-      %{teacher: serialized_teacher} = render(UniversityWeb.TeachersView, "show.json", %{teacher: teacher})
+
+      %{teacher: serialized_teacher} =
+        render(UniversityWeb.TeachersView, "show.json", %{teacher: teacher})
+
       assert teacher == serialized_teacher
     end
   end
