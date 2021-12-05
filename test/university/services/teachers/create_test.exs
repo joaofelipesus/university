@@ -16,14 +16,16 @@ defmodule University.Services.Teachers.CreateTest do
       response = Create.call(params)
       assert {:error, %Ecto.Changeset{} = changeset} = response
       %{errors: errors} = changeset
-      assert errors ==[
-        graduation: {"is invalid",
-         [
-           validation: :inclusion,
-           enum: ["POST_GRADUATED", "MASTER", "DOCTOR", "POST_DOCTOR"]
-         ]},
-        name: {"can't be blank", [validation: :required]}
-      ]
+
+      assert errors == [
+               graduation:
+                 {"is invalid",
+                  [
+                    validation: :inclusion,
+                    enum: ["POST_GRADUATED", "MASTER", "DOCTOR", "POST_DOCTOR"]
+                  ]},
+               name: {"can't be blank", [validation: :required]}
+             ]
     end
   end
 end

@@ -3,7 +3,7 @@ defmodule University.Services.Teachers.Create do
 
   def call(params) do
     params
-    |> Teacher.changeset
-    |> Repo.insert
+    |> Teacher.changeset()
+    |> Repo.insert()
   end
 end

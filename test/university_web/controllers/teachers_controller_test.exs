@@ -60,4 +60,33 @@ defmodule UniversityWeb.TeachersControllerTest do
       assert %{"errors" => "Record not found."} == response
     end
   end
+
+  describe "create/2" do
+    test "when params are ok", %{conn: conn} do
+      params = %{name: "Sasuke", graduation: "DOCTOR"}
+
+      response =
+        conn
+        |> post(Routes.teachers_path(conn, :create, params))
+        |> json_response(:created)
+
+      assert %{
+        "teacher" => %{
+          "graduation" => "DOCTOR",
+          "id" => _id,
+          "name" => "Sasuke"
+        }
+      } = response
+    end
+
+    test "when params has problems", %{conn: conn} do
+      params = %{name: "", graduation: "ULTRA_MASTER"}
+      response =
+        conn
+        |> post(Routes.teachers_path(conn, :create, params))
+        |> json_response(:bad_request)
+
+      assert %{"errors" => %{"graduation" => ["is invalid"], "name" => ["can't be blank"]}} == response
+    end
+  end
 end
