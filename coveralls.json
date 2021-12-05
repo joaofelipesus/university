@@ -1,6 +1,15 @@
 {
   "skip_files": [
     "test/support",
-    "lib/university/mailer.ex"
+    "lib/university/mailer.ex",
+    "lib/university_web.ex",
+    "lib/university_web/gettext.ex",
+    "lib/university_web/router.ex",
+    "lib/university/repo.ex",
+    "lib/university/application.ex",
+    "lib/university.ex",
+    "lib/university_web/endpoint.ex",
+    "lib/university_web/telemetry.ex",
+    "lib/university_web/views/error_helpers.ex"
   ]
 }
